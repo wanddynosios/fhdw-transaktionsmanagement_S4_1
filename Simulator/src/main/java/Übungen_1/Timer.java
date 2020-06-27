@@ -9,10 +9,11 @@ public class Timer extends Thread{
 
     @Override
     public void run() {
+        System.out.println("Starting clock");
         while (!this.isInterrupted()){
             currentTime++;
             try {
-                this.sleep(85);
+                this.sleep(200);
             } catch (InterruptedException e) {
                 this.interrupt();
             }
