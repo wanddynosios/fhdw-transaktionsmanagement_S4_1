@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fhdw-transaktionsmanagement_S4_1</groupId>
   <artifactId>fhdw-transaktionsmanagement_S4_1</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>fhdw-transaktionsmanagement_S4_1</name>
   
   <dependencies>
