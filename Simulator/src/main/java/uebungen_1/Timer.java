@@ -1,6 +1,6 @@
-package Übungen_1;
+package uebungen_1;
 
-public class Timer extends Thread{
+public class Timer extends Thread {
     private long currentTime = 0l;
 
     public long getCurrentTime() {

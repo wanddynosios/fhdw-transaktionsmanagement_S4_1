@@ -11,33 +11,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-bundle:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-addons:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-core:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-common:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.8" level="project" />
-    <orderEntry type="library" name="Maven: org.tukaani:xz:1.5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
-    <orderEntry type="library" name="Maven: com.jayway.jsonpath:json-path:0.9.0" level="project" />
-    <orderEntry type="library" name="Maven: net.minidev:json-smart:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
-    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.3.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-remote:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-blob:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-dbcp:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-seq:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-together:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-kvalue:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-cache:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: com.github.anylogic:alogic-vfs:1.6.5" level="project" />
-    <orderEntry type="library" name="Maven: ch.ethz.ganymed:ganymed-ssh2:262" level="project" />
-    <orderEntry type="library" name="Maven: org.mariadb.jdbc:mariadb-java-client:1.1.7" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:platform:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.13" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
   </component>

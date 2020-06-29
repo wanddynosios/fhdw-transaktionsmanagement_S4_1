@@ -1,4 +1,4 @@
-package Übungen_1;
+package uebungen_1;
 
 import java.util.*;
 
@@ -22,12 +22,12 @@ public class DESScheduler extends Thread implements Comparator{
     public void run() {
         long startTime = this.getTime() + 1;
         while (true) {
-            if (getTime() == startTime) break;
+            if (this.getTime() == startTime) break;
         }
         queue.add(new Event(this));
 
         while (true) {
-            if (getTime() == startTime + 2) break;
+            if (this.getTime() == startTime + 2) break;
         }
         queue.add(new Event(this));
 

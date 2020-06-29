@@ -1,8 +1,8 @@
-package Übungen_1;
+package uebungen_1;
 
 public class Event implements Comparable {
     private Timer timer;
-    private Long startTime;
+    private Long creationTime;
     private long time;
     private DESScheduler DESScheduler;
     public Event(DESScheduler DESScheduler){
@@ -10,11 +10,11 @@ public class Event implements Comparable {
         this.DESScheduler = DESScheduler;
         timer = DESScheduler.getTimer();
         time = timer.getCurrentTime();
-        startTime = timer.getCurrentTime();
+        creationTime = timer.getCurrentTime();
     }
 
     public Event startProcessing(){
-        while (time < startTime + 10){
+        while (time < creationTime + 10){
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -22,16 +22,16 @@ public class Event implements Comparable {
             }
             time = timer.getCurrentTime();
         }
-        System.out.println("EVENT with startTime "+startTime+" started at "+ DESScheduler.getTime());
+        System.out.println("EVENT with creationTime "+ creationTime +" started at "+ DESScheduler.getTime());
         return new Event(DESScheduler);
     }
 
     public int compareTo(Object o) {
         Event other = (Event) o;
-        return this.startTime.compareTo(other.getStartTime());
+        return this.creationTime.compareTo(other.getCreationTime());
     }
 
-    private Long getStartTime() {
-        return this.startTime;
+    private Long getCreationTime() {
+        return this.creationTime;
     }
 }

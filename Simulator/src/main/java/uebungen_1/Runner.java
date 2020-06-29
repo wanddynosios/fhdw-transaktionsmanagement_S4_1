@@ -1,4 +1,4 @@
-package Übungen_1;
+package uebungen_1;
 
 public class Runner {
 
