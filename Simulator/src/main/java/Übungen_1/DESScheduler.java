@@ -15,19 +15,19 @@ public class DESScheduler extends Thread implements Comparator{
     }
     public DESScheduler(){
         queue = new PriorityQueue<Event>(100, this);
-        System.out.println(1);
         timer.start();
     }
 
     @Override
     public void run() {
+        long startTime = this.getTime() + 1;
         while (true) {
-            if (getTime() == 2) break;
+            if (getTime() == startTime) break;
         }
         queue.add(new Event(this));
 
         while (true) {
-            if (getTime() == 4) break;
+            if (getTime() == startTime + 2) break;
         }
         queue.add(new Event(this));
 
