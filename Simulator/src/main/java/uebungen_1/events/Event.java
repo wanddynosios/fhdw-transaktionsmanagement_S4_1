@@ -7,13 +7,13 @@ public class Event implements Comparable{
 
     DESScheduler dESScheduler;
     public Event(DESScheduler DESScheduler){
-        System.out.println("Erstellt");
+        //System.out.println("Erstellt");
         this.dESScheduler = DESScheduler;
     }
 
     public Event startProcessing() {
         dESScheduler.countExecution();
-        System.out.println("EVENT with creationTime "+ priority +" started at "+ dESScheduler.getTime());
+        //System.out.println("EVENT started at "+ dESScheduler.getTime());
         return new Event(dESScheduler);
     }
 

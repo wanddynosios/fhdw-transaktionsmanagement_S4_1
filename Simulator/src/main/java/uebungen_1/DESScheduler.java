@@ -11,7 +11,11 @@ public class DESScheduler extends Thread implements Comparator {
     private PriorityQueue<Event> queue = new PriorityQueue<Event>();
     private int executionCounter = 0;
     private Event lastEvent;
-    private ExponentialDistribution distribution = new ExponentialDistribution(10);
+    private ExponentialDistribution distribution;// = new ExponentialDistribution(10);
+
+    public DESScheduler(int mean){
+        distribution = new ExponentialDistribution(mean);
+    }
 
     public synchronized long getTime(){
         try {
@@ -31,7 +35,7 @@ public class DESScheduler extends Thread implements Comparator {
             Event toAdd = queue.poll().startProcessing();
             addToQueueWithMath(toAdd);
         }
-        System.out.println("Has been executed "+executionCounter);
+        System.out.print(executionCounter+", ");
     }
 
     private void addToQueueWithMath(Event toAdd) {
