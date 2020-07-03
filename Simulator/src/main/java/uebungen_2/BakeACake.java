@@ -7,59 +7,68 @@ import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import uebungen_1.DESScheduler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BakeACake {
 
     public static void main(String[] args) {
-        List<Long> totalTimes = new ArrayList<Long>();
-        for (int i = 0; i < 15; i++) {
-            //Rezept lesen
-            Thread rezeptLesen = new DESScheduler(new NormalDistribution(500.0, 200.0));
-            rezeptLesen.start();
+        List<Long> totalTimesMulti = new ArrayList<Long>();
+        for (int i = 0; i < 1000; i++) {
+            List<Long> totalTimes = new ArrayList<Long>();
+            for (int j = 0; j < 15; j++) {
+                //Rezept lesen
+                Thread rezeptLesen = new DESScheduler(new NormalDistribution(500.0, 200.0));
+                rezeptLesen.start();
 
-            //Einkaufen
-            Thread einkaufen = new DESScheduler(new ExponentialDistribution(7500));
-            einkaufen.start();
+                //Einkaufen
+                Thread einkaufen = new DESScheduler(new ExponentialDistribution(7500));
+                einkaufen.start();
 
-            //Abwiegen
-            Thread abwiegen = new DESScheduler(new UniformRealDistribution(100, 200));
-            abwiegen.start();
+                //Abwiegen
+                Thread abwiegen = new DESScheduler(new UniformRealDistribution(100, 200));
+                abwiegen.start();
 
-            //Rühren
-            Thread rühren = new DESScheduler(new NormalDistribution(100.0, 5.0));
-            rühren.start();
+                //Rühren
+                Thread rühren = new DESScheduler(new NormalDistribution(100.0, 5.0));
+                rühren.start();
 
-            //Backen
-            Thread backen = new DESScheduler(new NormalDistribution(1000.0, 0.0000000001));
-            backen.start();
+                //Backen
+                Thread backen = new DESScheduler(new NormalDistribution(1000.0, 0.0000000001));
+                backen.start();
 
-            try {
-                rezeptLesen.join();
-                einkaufen.join();
-                abwiegen.join();
-                rühren.join();
-                backen.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                try {
+                    rezeptLesen.join();
+                    einkaufen.join();
+                    abwiegen.join();
+                    rühren.join();
+                    backen.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                totalTimes.add(StaticTimeCounter.getCount());
+                StaticTimeCounter.resetCount();
             }
-            totalTimes.add(StaticTimeCounter.getCount());
-            StaticTimeCounter.resetCount();
+            Long sum = 0l;
+            for (Long l : totalTimes)
+                sum += l;
+            //System.out.println("Sum: "+sum);
+            Long avg = sum / totalTimes.size();
+            System.out.println("Avg: "+ avg);
+            double[] arr = new double[totalTimes.size()];
+            for (int j =0; j < totalTimes.size(); j++)
+                arr[j] = totalTimes.get(j);
+            double standardabweichung = new StandardDeviation().evaluate(arr);
+            //System.out.println("Standardabweichung: " + standardabweichung);
+            System.out.println("\t relativ: "+ avg / standardabweichung);
+            totalTimesMulti.add(sum);
         }
-        System.out.println(totalTimes);
         Long sum = 0l;
-        for (Long l : totalTimes)
+        for (Long l : totalTimesMulti)
             sum += l;
-        System.out.println("Sum: "+sum);
-        Long avg = sum / totalTimes.size();
-        System.out.println("Avg: "+ avg);
-        double[] arr = new double[totalTimes.size()];
-        for (int i =0; i < totalTimes.size(); i++)
-            arr[i] = totalTimes.get(i);
-        double standardabweichung = new StandardDeviation().evaluate(arr);
-        System.out.println("Standardabweichung: " + standardabweichung);
-        System.out.println("\t relativ: "+ avg / standardabweichung);
+        Long avg = sum / totalTimesMulti.size();
+        System.out.println("MultiAvg: "+ avg);
+
+
     }
     //Result Aufgabe 4a + b:
     /*218, 1533, 191, 103, 1000,
@@ -84,6 +93,11 @@ public class BakeACake {
     Avg: 8836
     Standardabweichung: 7941.668160495537
          relativ: 1.112612592396288*/
+
+    //Result Aufgabe 4d:
+    //Bei 10: MultiAvg: 148822
+    //Bei 100: MultiAvg: 141660
+    //Bei 1000: MultiAvg: 137835
 
 
 }
