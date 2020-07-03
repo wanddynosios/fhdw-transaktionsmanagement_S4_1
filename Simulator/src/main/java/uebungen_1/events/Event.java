@@ -12,13 +12,10 @@ public class Event {
         creationTime = dESScheduler.getTime();
     }
 
-    public void startProcessing(){
+    public void startProcessing() throws Exception{
         System.out.println("EVENT with creationTime "+ creationTime +" started at "+ dESScheduler.getTime());
         desiredTime = dESScheduler.getTime() + 10;
-        try {
             dESScheduler.subscribeToTime(desiredTime, new Event(dESScheduler));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            System.out.println(creationTime+ " subscribing at "+ dESScheduler.getTime() + " for " + desiredTime);
     }
 }

@@ -8,12 +8,10 @@ import java.util.*;
 
 public class DESScheduler extends Thread {
     private Timer timer = new Timer();
-
-    public synchronized Map<Long, Event> getTimeSubscribtions() {
-        return timeSubscribtions;
+    public synchronized Map<Long, Event> getTimeSubscriptions() {
+        return timeSubscriptions;
     }
-
-    private Map<Long, Event> timeSubscribtions = new HashMap<Long, Event>();
+    private Map<Long, Event> timeSubscriptions = new HashMap<Long, Event>();
     private Semaphore mutex = new Semaphore(1);
 
     public synchronized long getTime(){
@@ -22,9 +20,9 @@ public class DESScheduler extends Thread {
 
     @Override
     public void run() {
-        getTimeSubscribtions().put(0l, new Event(this));
-        getTimeSubscribtions().put(2l, new Event(this));
-        getTimeSubscribtions().put(10000l, new EndEvent(this));
+        getTimeSubscriptions().put(0l, new Event(this));
+        getTimeSubscriptions().put(2l, new Event(this));
+        getTimeSubscriptions().put(10000l, new EndEvent(this));
         while (!this.isInterrupted()){
             try {
                 this.mutex.down();
@@ -32,26 +30,27 @@ public class DESScheduler extends Thread {
                 this.interrupt();
             }
             try {
-                Event t = getTimeSubscribtions().get(getTime());
-                t.startProcessing();
-            } catch (NullPointerException e){
+                getTimeSubscriptions().get(getTime()).startProcessing();
+            } catch (Exception e){
+                System.out.println(e.getMessage());
                 this.mutex.up();
             }
             timer.incrementTime();
         }
+        System.out.println(timeSubscriptions);
     }
 
     public synchronized void subscribeToTime(Long time, Event event) throws Exception{
         try{
-            if (!getTimeSubscribtions().get(time).equals(null)){
+            if (!getTimeSubscriptions().get(time).equals(null)){
                 throw new Exception("Slot already busy");
             }
             if (time <= getTime()){
                 throw new Exception("Desired time has already passed");
             }
-            getTimeSubscribtions().put(time, event);
         } catch (NullPointerException e){
         }
+        getTimeSubscriptions().put(time, event);
         this.mutex.up();
     }
 

@@ -9,10 +9,9 @@ public class EndEvent extends Event {
     }
 
     @Override
-    public void startProcessing() {
+    public void startProcessing() throws Exception{
         dESScheduler.interrupt();
         super.startProcessing();
-
     }
 
 
