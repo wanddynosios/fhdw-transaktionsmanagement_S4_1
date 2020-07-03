@@ -12,7 +12,7 @@ public class Runner {
             if (mean < 1 ) {
                 mean = mean * -1 + 1;
             }
-            new DESScheduler(mean).start();
+            //new DESScheduler(mean).start();
             System.out.println("Mean: "+ mean);
         }
     }
