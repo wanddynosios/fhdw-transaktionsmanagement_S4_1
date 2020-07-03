@@ -1,57 +1,50 @@
 package uebungen_1;
 
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 import uebungen_1.events.EndEvent;
 import uebungen_1.events.Event;
-import util.Semaphore;
+import uebungen_1.events.InitEvent;
 
 import java.util.*;
 
-public class DESScheduler extends Thread {
-    private Timer timer = new Timer();
-    public synchronized Map<Long, Event> getTimeSubscriptions() {
-        return timeSubscriptions;
-    }
-    private Map<Long, Event> timeSubscriptions = new HashMap<Long, Event>();
-    private Semaphore mutex = new Semaphore(1);
+public class DESScheduler extends Thread implements Comparator {
+    private PriorityQueue<Event> queue = new PriorityQueue<Event>();
+    private int executionCounter = 0;
+    private Event lastEvent;
+    private ExponentialDistribution distribution = new ExponentialDistribution(10);
 
     public synchronized long getTime(){
-        return this.timer.getCurrentTime();
+        try {
+            return this.lastEvent.getPriority();
+        } catch (NullPointerException e){
+            return 0l;
+        }
     }
 
     @Override
     public void run() {
-        getTimeSubscriptions().put(0l, new Event(this));
-        getTimeSubscriptions().put(2l, new Event(this));
-        getTimeSubscriptions().put(10000l, new EndEvent(this));
+        queue.add(new InitEvent(this, 0l));
+        queue.add(new InitEvent(this, 2l));
+        queue.add(new EndEvent(this, 1000000));
         while (!this.isInterrupted()){
-            try {
-                this.mutex.down();
-            } catch (InterruptedException e) {
-                this.interrupt();
-            }
-            try {
-                getTimeSubscriptions().get(getTime()).startProcessing();
-            } catch (Exception e){
-                System.out.println(e.getMessage());
-                this.mutex.up();
-            }
-            timer.incrementTime();
+            lastEvent = queue.peek();
+            Event toAdd = queue.poll().startProcessing();
+            addToQueueWithMath(toAdd);
         }
-        System.out.println(timeSubscriptions);
+        System.out.println("Has been executed "+executionCounter);
     }
 
-    public synchronized void subscribeToTime(Long time, Event event) throws Exception{
-        try{
-            if (!getTimeSubscriptions().get(time).equals(null)){
-                throw new Exception("Slot already busy");
-            }
-            if (time <= getTime()){
-                throw new Exception("Desired time has already passed");
-            }
-        } catch (NullPointerException e){
-        }
-        getTimeSubscriptions().put(time, event);
-        this.mutex.up();
+    private void addToQueueWithMath(Event toAdd) {
+        toAdd.setPriority(this.getTime() + Math.round(distribution.sample()));
+        queue.add(toAdd);
+    }
+
+    public synchronized void countExecution(){
+        executionCounter++;
+    }
+
+    public int compare(Object o1, Object o2) {
+        return ((Event) o1).compareTo((Event) o2);
     }
 
 }

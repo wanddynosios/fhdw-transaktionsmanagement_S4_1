@@ -4,14 +4,15 @@ import uebungen_1.DESScheduler;
 
 public class EndEvent extends Event {
 
-    public EndEvent(DESScheduler DESScheduler) {
-        super(DESScheduler);
+    @Override
+    public Event startProcessing() {
+        dESScheduler.interrupt();
+        return super.startProcessing();
     }
 
-    @Override
-    public void startProcessing() throws Exception{
-        dESScheduler.interrupt();
-        super.startProcessing();
+    public EndEvent(DESScheduler DESScheduler, long priority) {
+        super(DESScheduler);
+        this.priority = priority;
     }
 
 
