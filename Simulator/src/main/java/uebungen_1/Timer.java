@@ -1,22 +1,14 @@
 package uebungen_1;
 
-public class Timer extends Thread {
-    private long currentTime = 0l;
+public class Timer {
+    private static long currentTime = 0l;
 
-    public long getCurrentTime() {
+    public synchronized long getCurrentTime() {
         return currentTime;
     }
 
-    @Override
-    public void run() {
-        System.out.println("Starting clock");
-        while (!this.isInterrupted()){
-            currentTime++;
-            try {
-                this.sleep(200);
-            } catch (InterruptedException e) {
-                this.interrupt();
-            }
-        }
+    public synchronized void incrementTime(){
+        currentTime++;
+        System.out.println("Time: "+currentTime);
     }
 }
