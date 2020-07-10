@@ -16,8 +16,8 @@ public class SingleSimDemo2 {
 		Simulation sim = new Simulation() {
 
 			public void injectStart() {
-				DESScheduler.schedule(new TestEventExponential(), 0);
-				DESScheduler.schedule(new TestEventExponential(), 2);
+				DESScheduler.schedule(new TestEventExponential(), 0l);
+				DESScheduler.schedule(new TestEventExponential(), 2l);
 			}
 
 			public void start() {
@@ -30,7 +30,7 @@ public class SingleSimDemo2 {
 
 		};
 		
-		for (int i = 0; i < 1; i++) {			
+		for (int i = 0; i < 1; i++) {
 			simulator.simulate(sim);
 		}
 		simulator.terminate();

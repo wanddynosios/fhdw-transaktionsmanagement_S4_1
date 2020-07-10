@@ -1,5 +1,6 @@
 package Vorlesung.spielwiese;
 
+import Vorlesung.modelling.ModelProcess;
 import Vorlesung.modelling.ProcessStep;
 import Vorlesung.modelling.ProcessStepDelay;
 import Vorlesung.scheduler.DESScheduler;
@@ -35,7 +36,7 @@ public class TestProcess1 {
 	public void step2() {
 		DESScheduler.log("  Step 3 / " + DESScheduler.getSimulationTime());
 		if(DESScheduler.getSimulationTime() < 1000000) {
-//			ModelProcess.scheduleProcess(new TestProcess1());
+			ModelProcess.scheduleProcess(new TestProcess1());
 		}
 	}
 }

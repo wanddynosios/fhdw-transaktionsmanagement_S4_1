@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 
 public class ModelProcess implements DESOperation {
-	
+
 	private Object targetProcess;
 	private ModelProcessExecutor current;
 	private Iterator<ModelProcessExecutor> stepIterator;
@@ -28,6 +28,7 @@ public class ModelProcess implements DESOperation {
 		DESScheduler.scheduleToFuture(model, model.getDelay() + time);
 	}
 
+	@Override
 	public void process() {
 		current.process(this.targetProcess);
 		if(this.stepIterator.hasNext()) {

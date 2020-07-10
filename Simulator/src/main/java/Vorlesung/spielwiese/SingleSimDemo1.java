@@ -19,8 +19,8 @@ public class SingleSimDemo1 {
 			}
 			
 			public void injectStart() {
-				DESScheduler.schedule(new TestEventStatic(), 0);
-				DESScheduler.schedule(new TestEventStatic(), 2);
+				DESScheduler.schedule(new TestEventStatic(), 0l);
+				DESScheduler.schedule(new TestEventStatic(), 2l);
 			}
 			
 			public void finish() {
