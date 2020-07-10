@@ -1,9 +1,8 @@
 package Vorlesung.spielwiese;
 
-import de.fhdw.tm.des.modelling.ModelProcess;
-import de.fhdw.tm.des.modelling.ProcessStep;
-import de.fhdw.tm.des.modelling.ProcessStepDelay;
-import de.fhdw.tm.des.scheduler.DESScheduler;
+import Vorlesung.modelling.ProcessStep;
+import Vorlesung.modelling.ProcessStepDelay;
+import Vorlesung.scheduler.DESScheduler;
 
 public class TestProcess1 {
 	

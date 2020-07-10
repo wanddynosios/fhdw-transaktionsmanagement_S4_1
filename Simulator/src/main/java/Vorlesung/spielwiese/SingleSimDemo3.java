@@ -1,9 +1,10 @@
 package Vorlesung.spielwiese;
 
-import de.fhdw.tm.des.modelling.ModelProcess;
-import de.fhdw.tm.des.scheduler.DESScheduler;
-import de.fhdw.tm.des.scheduler.Simulation;
-import de.fhdw.tm.des.scheduler.Simulator;
+
+import Vorlesung.modelling.ModelProcess;
+import Vorlesung.scheduler.DESScheduler;
+import Vorlesung.scheduler.Simulation;
+import Vorlesung.scheduler.Simulator;
 
 public class SingleSimDemo3 {
 
@@ -15,22 +16,18 @@ public class SingleSimDemo3 {
 		
 		Simulation sim = new Simulation() {
 
-			@Override
 			public void injectStart() {
 				ModelProcess.scheduleProcess(new TestProcess1());
 				ModelProcess.scheduleProcesstoFuture(new TestProcess1(), 1);
 			}
 
-			@Override
 			public void start() {
 				System.out.println("Start...");
 			}
 			
-			@Override
 			public void finish() {
 				System.out.println("Fertig");
 			}
-			
 		};
 		
 		for (int i = 0; i < 1; i++) {			

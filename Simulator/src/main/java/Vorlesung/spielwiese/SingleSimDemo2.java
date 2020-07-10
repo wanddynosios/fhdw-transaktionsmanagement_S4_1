@@ -1,8 +1,9 @@
 package Vorlesung.spielwiese;
 
-import de.fhdw.tm.des.scheduler.DESScheduler;
-import de.fhdw.tm.des.scheduler.Simulation;
-import de.fhdw.tm.des.scheduler.Simulator;
+import Vorlesung.scheduler.DESScheduler;
+import Vorlesung.scheduler.Simulation;
+import Vorlesung.scheduler.Simulator;
+
 
 public class SingleSimDemo2 {
 
@@ -14,18 +15,15 @@ public class SingleSimDemo2 {
 		
 		Simulation sim = new Simulation() {
 
-			@Override
 			public void injectStart() {
 				DESScheduler.schedule(new TestEventExponential(), 0);
 				DESScheduler.schedule(new TestEventExponential(), 2);
 			}
 
-			@Override
 			public void start() {
 				System.out.print("Start...");
 			}
 			
-			@Override
 			public void finish() {
 				System.out.println("Fertig");
 			}

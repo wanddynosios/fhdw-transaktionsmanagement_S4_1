@@ -1,9 +1,10 @@
 package Vorlesung.modelling;
 
+import Vorlesung.scheduler.DESOperation;
+import Vorlesung.scheduler.DESScheduler;
+
 import java.util.Iterator;
 
-import de.fhdw.tm.des.scheduler.DESOperation;
-import de.fhdw.tm.des.scheduler.DESScheduler;
 
 public class ModelProcess implements DESOperation {
 	
@@ -27,7 +28,6 @@ public class ModelProcess implements DESOperation {
 		DESScheduler.scheduleToFuture(model, model.getDelay() + time);
 	}
 
-	@Override
 	public void process() {
 		current.process(this.targetProcess);
 		if(this.stepIterator.hasNext()) {

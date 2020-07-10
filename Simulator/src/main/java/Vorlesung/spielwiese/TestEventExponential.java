@@ -1,9 +1,8 @@
 package Vorlesung.spielwiese;
 
+import Vorlesung.scheduler.DESOperation;
+import Vorlesung.scheduler.DESScheduler;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
-
-import de.fhdw.tm.des.scheduler.DESOperation;
-import de.fhdw.tm.des.scheduler.DESScheduler;
 
 public class TestEventExponential implements DESOperation {
 	
@@ -13,7 +12,6 @@ public class TestEventExponential implements DESOperation {
 		this.timeGenerator = new ExponentialDistribution(DESScheduler.getRandom(), 10);
 	}
 
-	@Override
 	public void process() {
 		if(DESScheduler.getSimulationTime() < 100) {
 			DESScheduler.log("Event executed: t = " + DESScheduler.getSimulationTime());

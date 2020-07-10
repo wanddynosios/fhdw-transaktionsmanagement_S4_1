@@ -11,12 +11,10 @@ public class DESEvent implements Runnable, Comparable<DESEvent> {
 	}
 	
 
-	@Override
 	public int compareTo(DESEvent o) {
 		return (int) (this.executionTime - o.executionTime);
 	}
 
-	@Override
 	public void run() {
 		this.operation.process();
 	}
