@@ -28,9 +28,9 @@ public class BakeACake {
                 Thread abwiegen = new DESScheduler(new UniformRealDistribution(100, 200));
                 abwiegen.start();
 
-                //Rühren
-                Thread rühren = new DESScheduler(new NormalDistribution(100.0, 5.0));
-                rühren.start();
+                //Ruehren
+                Thread ruehren = new DESScheduler(new NormalDistribution(100.0, 5.0));
+                ruehren.start();
 
                 //Backen
                 Thread backen = new DESScheduler(new NormalDistribution(1000.0, 0.0000000001));
@@ -40,7 +40,7 @@ public class BakeACake {
                     rezeptLesen.join();
                     einkaufen.join();
                     abwiegen.join();
-                    rühren.join();
+                    ruehren.join();
                     backen.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -16,8 +16,7 @@ public class Simulator {
 	
 	public Simulator(long mainSeed, int threads) {
 		this.rootRandom = new MersenneTwister(mainSeed);
-
-		executor = Executors.newFixedThreadPool(1); //TODO True multisim ;)
+		executor = Executors.newFixedThreadPool(threads); //TODO True multisim ;)
 	}
 	
 	public void terminate() {
