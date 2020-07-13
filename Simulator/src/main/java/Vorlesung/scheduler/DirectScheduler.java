@@ -58,7 +58,7 @@ public class DirectScheduler extends DESScheduler {
 					DESEvent event = this.heap.poll();
 					this.currentTime = event.getTime(); //Nullpointer
 					event.run();
-				} catch (NullPointerException e){
+				} catch (RuntimeException e){
 					throw new ModelException("Multiple Schedulers were trying to poll the last element in heap! "+e.getMessage());
 				}
 			}
