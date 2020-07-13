@@ -3,6 +3,7 @@ package Vorlesung.scheduler;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import Vorlesung.modelling.ModelException;
 import org.apache.commons.math3.random.MersenneTwister;
 
 public class Simulator {
@@ -15,8 +16,8 @@ public class Simulator {
 	}
 	
 	public Simulator(long mainSeed, int threads) {
-		this.rootRandom = new MersenneTwister(mainSeed);
-		executor = Executors.newFixedThreadPool(threads); //TODO True multisim ;)
+			this.rootRandom = new MersenneTwister(mainSeed);
+			executor = Executors.newFixedThreadPool(threads); //TODO True multisim ;)
 	}
 	
 	public void terminate() {
@@ -24,7 +25,12 @@ public class Simulator {
 	}
 	
 	public void simulate(Simulation sim) {
-		this.executor.execute(new SimulationWrapper(sim, rootRandom.nextLong()));
+		try {
+			this.executor.execute(new SimulationWrapper(sim, rootRandom.nextLong()));
+		} catch (ModelException e){
+			this.terminate();
+			e.printStackTrace();
+		}
 	}
 	
 }
