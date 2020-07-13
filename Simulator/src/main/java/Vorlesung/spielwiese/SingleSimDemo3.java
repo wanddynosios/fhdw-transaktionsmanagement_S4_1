@@ -30,7 +30,7 @@ public class SingleSimDemo3 {
 			}
 		};
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			simulator.simulate(sim);
 		}
 		simulator.terminate();

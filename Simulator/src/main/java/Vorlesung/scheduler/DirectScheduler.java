@@ -2,6 +2,7 @@ package Vorlesung.scheduler;
 
 import java.util.PriorityQueue;
 
+import Vorlesung.modelling.ModelException;
 import org.apache.commons.math3.random.RandomGenerator;
 
 public class DirectScheduler extends DESScheduler {
@@ -23,7 +24,11 @@ public class DirectScheduler extends DESScheduler {
 
 	@Override
 	protected void injectToFuture(DESOperation operation, long time) {
-		this.heap.offer(new DESEvent(operation, this.currentTime + time));
+		try {
+			this.heap.offer(new DESEvent(operation, this.currentTime + time));
+		} catch (RuntimeException e){
+			throw new ModelException("Multiple Schedulers were trying to add an Element simultaneously: "+e.getMessage());
+		}
 	}
 
 	@Override
@@ -45,15 +50,18 @@ public class DirectScheduler extends DESScheduler {
 	
 	@Override
 	public void execute(Simulation sim, RandomGenerator randomGenerator) {
-		getScheduler().reset(randomGenerator);
+		this.getScheduler().reset(randomGenerator);
 		sim.injectStart();
 		sim.start();
-			while(! this.heap.isEmpty()) {
-				DESEvent event = this.heap.poll();
-				this.currentTime = event.getTime();
-				event.run();
+			while(!this.heap.isEmpty()) {
+				try{
+					DESEvent event = this.heap.poll();
+					this.currentTime = event.getTime(); //Nullpointer
+					event.run();
+				} catch (NullPointerException e){
+					throw new ModelException("Multiple Schedulers were trying to poll the last element in heap! "+e.getMessage());
+				}
 			}
 		sim.finish();
 	}
-
 }

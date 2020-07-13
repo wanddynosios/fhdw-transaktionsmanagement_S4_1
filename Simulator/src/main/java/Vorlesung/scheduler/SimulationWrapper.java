@@ -14,7 +14,7 @@ public class SimulationWrapper implements Runnable {
 	
 	public void run() {
 		//TODO Seperate simulations
-		DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed));
+		DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed)); //Nullpointer
 	}
 	
 	public Simulation getSimulation() {
