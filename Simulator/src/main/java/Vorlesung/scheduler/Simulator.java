@@ -25,13 +25,7 @@ public class Simulator {
 	}
 	
 	public void simulate(Simulation sim) {
-		try {
-			this.executor.execute(new SimulationWrapper(sim, rootRandom.nextLong()));
-		} catch (ModelException e){
-			this.terminate();
-			System.out.println("Error in concurrent execution of multiple simulations");
-			System.out.println(e.getMessage());
-		}
+		this.executor.execute(new SimulationWrapper(sim, rootRandom.nextLong()));
 	}
 	
 }

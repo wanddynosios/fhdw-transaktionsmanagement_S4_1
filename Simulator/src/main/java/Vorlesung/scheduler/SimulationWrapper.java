@@ -1,5 +1,6 @@
 package Vorlesung.scheduler;
 
+import Vorlesung.modelling.ModelException;
 import org.apache.commons.math3.random.MersenneTwister;
 
 public class SimulationWrapper implements Runnable {
@@ -14,7 +15,11 @@ public class SimulationWrapper implements Runnable {
 	
 	public void run() {
 		//TODO Seperate simulations
-		DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed)); //Nullpointer
+		try {
+			DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed)); //Nullpointer
+		} catch (ModelException e){
+			System.out.println("ERROR: "+e.toString()+" "+e.getMessage());
+		}
 	}
 	
 	public Simulation getSimulation() {
