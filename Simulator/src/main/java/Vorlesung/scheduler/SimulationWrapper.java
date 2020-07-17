@@ -16,7 +16,7 @@ public class SimulationWrapper implements Runnable {
 	public void run() {
 		//TODO Seperate simulations
 		try {
-			DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed)); //Nullpointer
+			DESScheduler.getScheduler().execute(this.simulation, new MersenneTwister(seed));
 		} catch (ModelException e){
 			System.out.println("ERROR: "+e.toString()+" "+e.getMessage());
 		}

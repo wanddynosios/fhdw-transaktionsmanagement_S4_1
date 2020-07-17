@@ -1,5 +1,6 @@
 package Vorlesung.spielwiese;
 
+import Vorlesung.modelling.ModelException;
 import Vorlesung.scheduler.DESOperation;
 import Vorlesung.scheduler.DESScheduler;
 import org.apache.commons.math3.distribution.ExponentialDistribution;

@@ -5,6 +5,7 @@ import java.util.concurrent.Executor;
 
 import Vorlesung.modelling.ModelException;
 import org.apache.commons.math3.random.RandomGenerator;
+import org.w3c.dom.ls.LSOutput;
 
 public class DirectScheduler extends DESScheduler {
 	
@@ -55,8 +56,9 @@ public class DirectScheduler extends DESScheduler {
 		sim.injectStart();
 		sim.start();
 			while(!this.heap.isEmpty()) {
+				DESEvent event = null;
 				try{
-					DESEvent event = this.heap.poll();
+					event = this.heap.poll();
 					this.currentTime = event.getTime();
 					event.run();
 				} catch (RuntimeException e){

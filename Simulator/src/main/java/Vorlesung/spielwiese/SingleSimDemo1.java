@@ -15,7 +15,7 @@ public class SingleSimDemo1 {
 		Simulation sim = new Simulation() {
 			
 			public void start() {
-				System.out.print("Start...");
+				System.out.println("Start...");
 			}
 			
 			public void injectStart() {

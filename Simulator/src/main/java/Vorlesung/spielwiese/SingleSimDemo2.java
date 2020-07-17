@@ -21,7 +21,7 @@ public class SingleSimDemo2 {
 			}
 
 			public void start() {
-				System.out.print("Start...");
+				System.out.println("Start...");
 			}
 			
 			public void finish() {

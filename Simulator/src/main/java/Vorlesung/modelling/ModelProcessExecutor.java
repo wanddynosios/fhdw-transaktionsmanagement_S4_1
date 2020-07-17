@@ -16,7 +16,7 @@ public class ModelProcessExecutor {
 	public void process(Object process) {
 		try {
 			operation.invoke(process);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (NullPointerException| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new ModelException("Invalid process operation methode signatur: " + operation.toGenericString());
 		}
 	}
@@ -24,7 +24,7 @@ public class ModelProcessExecutor {
 	public long getDelay(Object process) {
 		try {
 			return (long) delay.invoke(process);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (NullPointerException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new ModelException("Invalid process delay methode signatur: " + delay.toGenericString());
 		}
 	}

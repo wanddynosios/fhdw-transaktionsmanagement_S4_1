@@ -8,7 +8,7 @@ public abstract class DESScheduler {
 
 	private static DESScheduler singleton = new DirectScheduler();
 
-	protected static DESScheduler getScheduler(){
+	public static DESScheduler getScheduler(){
 		return singleton;
 	}
 	
