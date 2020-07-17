@@ -1,15 +1,11 @@
-import Vorlesung.scheduler.DESScheduler;
-import Vorlesung.scheduler.DirectScheduler;
-import Vorlesung.scheduler.Simulation;
-import Vorlesung.scheduler.Simulator;
-import Vorlesung.spielwiese.TestEventExponential;
+import vorlesung.version1.scheduler.DESScheduler;
+import vorlesung.version1.scheduler.Simulation;
+import vorlesung.version1.scheduler.Simulator;
+import vorlesung.version1.spielwiese.TestEventExponential;
 import org.apache.commons.math3.random.RandomGenerator;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class LaufzeitfehlerSimulatorTest {

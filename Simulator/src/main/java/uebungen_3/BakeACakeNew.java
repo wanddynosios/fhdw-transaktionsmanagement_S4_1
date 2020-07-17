@@ -1,7 +1,7 @@
 package uebungen_3;
 
-import Vorlesung.modelling.ProcessStep;
-import Vorlesung.modelling.ProcessStepDelay;
+import vorlesung.version1.modelling.ProcessStep;
+import vorlesung.version1.modelling.ProcessStepDelay;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.distribution.UniformRealDistribution;

@@ -1,9 +1,9 @@
 package uebungen_3;
 
-import Vorlesung.modelling.ModelProcess;
-import Vorlesung.scheduler.DESScheduler;
-import Vorlesung.scheduler.Simulation;
-import Vorlesung.scheduler.Simulator;
+import vorlesung.version1.modelling.ModelProcess;
+import vorlesung.version1.scheduler.DESScheduler;
+import vorlesung.version1.scheduler.Simulation;
+import vorlesung.version1.scheduler.Simulator;
 
 public class BakeACakeSim {
     public static void main(String[] args) {
