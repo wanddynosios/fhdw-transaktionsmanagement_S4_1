@@ -9,8 +9,6 @@ import vorlesung.version2.scheduler.Simulator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-
-
 public class SingleSimDemo4 {
 
 	private static final int SIMULATION_COUNT = 100;
@@ -51,7 +49,7 @@ public class SingleSimDemo4 {
 		for (SimulationResult r : results) {
 			System.out.println("Simulation: " + simID++);
 			r.printResults();
-		}
+	}
 		
 	}
 

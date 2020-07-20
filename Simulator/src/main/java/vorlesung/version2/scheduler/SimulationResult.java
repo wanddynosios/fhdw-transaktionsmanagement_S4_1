@@ -9,21 +9,20 @@ import java.util.stream.Collectors;
 
 
 public class SimulationResult {
-	
-	private static void setResult(SimulationResult result) {
-		((SimulatorThread)Thread.currentThread()).setResult(result);
-	}
-	
-	public static SimulationResult getResult() {
-		return ((SimulatorThread)Thread.currentThread()).getResult();
-	}
-
-	private Simulation simulation; 
+	private Simulation simulation;
 	private HashMap<Class<?>, HashMap<Object, SimulationEvaluator>> resultMap;
-	
+
 	public SimulationResult(Simulation sim) {
 		this.simulation = sim;
 		this.resultMap = new HashMap<Class<?>, HashMap<Object, SimulationEvaluator>>();
+	}
+
+	private static void setResult(SimulationResult result) {
+		((SimulatorThread)Thread.currentThread()).setResult(result);
+	}
+
+	public static SimulationResult getResult() {
+		return ((SimulatorThread)Thread.currentThread()).getResult();
 	}
 
 	public static void registerResult(SimulationResult result) {
@@ -62,5 +61,13 @@ public class SimulationResult {
 	
 	public Simulation getSimulation() {
 		return simulation;
+	}
+
+	@Override
+	public String toString() {
+		return "SimulationResult{" +
+				"simulation=" + simulation +
+				", resultMap=" + resultMap +
+				'}';
 	}
 }

@@ -21,6 +21,14 @@ public class EvaluationInterval extends SimulationEvaluatorWithStore {
 		this.lastTime = currentTime;
 		this.active = true;
 	}
+
+	public void trigger(long creationTime){
+		long currentTime = DESScheduler.getSimulationTime();
+		if(this.active) {
+			this.addData(currentTime - creationTime);
+		}
+		this.active = true;
+	}
 	
 	public void intervalStart() {
 		this.lastTime = DESScheduler.getSimulationTime();

@@ -7,19 +7,19 @@ import org.apache.commons.math3.util.ResizableDoubleArray;
 
 public abstract class SimulationEvaluatorWithStore extends SimulationEvaluator {
 	
-	private EvaluationPersistantCharacteristic[] characteristic;
+	private EvaluationPersistantCharacteristic[] characteristics;
 	private ResizableDoubleArray data;
 
-	public SimulationEvaluatorWithStore(String name, Object sut, EvaluationPersistantCharacteristic... characteristic) {
+	public SimulationEvaluatorWithStore(String name, Object sut, EvaluationPersistantCharacteristic... characteristics) {
 		super(name, sut);
-		this.characteristic = characteristic;
+		this.characteristics = characteristics;
 		this.data = new ResizableDoubleArray();
 	}
 
 	@Override
 	public Properties eval() {
 		Properties result = new Properties();
-		for (EvaluationPersistantCharacteristic c : this.characteristic) {
+		for (EvaluationPersistantCharacteristic c : this.characteristics) {
 			result.put(c.getDescription(), c.eval(this.data));
 		}
 		return result;

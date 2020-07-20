@@ -51,6 +51,7 @@ public class Simulator {
 			SimulationResult currentResult;
 			try {
 				currentResult = future.get();
+				System.out.println(currentResult);
 			} catch (ExecutionException e) {
 				this.executor.shutdownNow();
 				throw e;
