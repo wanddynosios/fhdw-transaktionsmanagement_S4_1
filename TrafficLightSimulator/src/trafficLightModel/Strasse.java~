@@ -1,0 +1,4 @@
+package vorlesung.version2.trafficLightGenerator;
+
+public class Strasse {
+}

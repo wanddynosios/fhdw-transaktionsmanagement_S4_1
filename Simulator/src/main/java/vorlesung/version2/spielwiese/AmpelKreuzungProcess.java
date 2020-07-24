@@ -14,10 +14,7 @@ import java.util.*;
 
 public class AmpelKreuzungProcess {
     private String name;
-//    private EvaluationInterval ampel1 = new EvaluationInterval("Ampel 1 ", this, new MeanCharacteristic(), new StandardDeviationCharacteristic(), new MaxCharacteristic());
-//    private EvaluationInterval ampel2 = new EvaluationInterval("Ampel 2 ", this, new MeanCharacteristic(), new StandardDeviationCharacteristic(), new MaxCharacteristic());
-//    private EvaluationInterval ampel3 = new EvaluationInterval("Ampel 3 ", this, new MeanCharacteristic(), new StandardDeviationCharacteristic(), new MaxCharacteristic());
-//    private EvaluationInterval ampel4 = new EvaluationInterval("Ampel 4 ", this, new MeanCharacteristic(), new StandardDeviationCharacteristic(), new MaxCharacteristic());
+
     private EvaluationInterval wartezeit = new EvaluationInterval("Global ", this, new MeanCharacteristic(), new StandardDeviationCharacteristic(), new MaxCharacteristic());
     private ExponentialDistribution hauptstrasse;
     private ExponentialDistribution nebenstrasse;
