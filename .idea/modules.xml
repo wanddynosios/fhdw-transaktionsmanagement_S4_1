@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DB-Simulator/DB-Simulator.iml" filepath="$PROJECT_DIR$/DB-Simulator/DB-Simulator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Simulator/Simulator.iml" filepath="$PROJECT_DIR$/Simulator/Simulator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TrafficLightSimulator/TrafficLightSimulator.iml" filepath="$PROJECT_DIR$/TrafficLightSimulator/TrafficLightSimulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TrafficLight-Simulator/TrafficLight-Simulator.iml" filepath="$PROJECT_DIR$/TrafficLight-Simulator/TrafficLight-Simulator.iml" />
       <module fileurl="file://$PROJECT_DIR$/fhdw-transaktionsmanagement_S4_1.iml" filepath="$PROJECT_DIR$/fhdw-transaktionsmanagement_S4_1.iml" />
     </modules>
   </component>
