@@ -1,4 +1,4 @@
-package trafficLightModel;
+package trafficLight.model;
 
 public interface Vehicle {
     Vehicle createNewVehicle();

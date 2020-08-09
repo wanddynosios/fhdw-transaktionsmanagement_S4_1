@@ -1,6 +1,5 @@
 package vorlesung.version2.evaluation.aggregation;
 
-import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.rank.Max;
 import org.apache.commons.math3.util.ResizableDoubleArray;
 

@@ -1,6 +1,7 @@
 package vorlesung.version2.scheduler;
 
 import org.apache.commons.math3.random.RandomGenerator;
+import vorlesung.version2.scheduler.specialEvents.DESTerminationEvent;
 
 public abstract class DESScheduler {
 
@@ -28,9 +29,13 @@ public abstract class DESScheduler {
 	
 	public static DESScheduler getScheduler() {
 		return ((SimulatorThread)Thread.currentThread()).getScheduler();
-	}	
-	
-	protected abstract void inject(DESOperation operation, long time);
+	}
+
+    public static void setFixedTermination(long maxTime) {
+		DESScheduler.schedule(new DESTerminationEvent(), maxTime);
+    }
+
+    protected abstract void inject(DESOperation operation, long time);
 
 	protected abstract void injectToFuture(DESOperation operation, long time);
 	

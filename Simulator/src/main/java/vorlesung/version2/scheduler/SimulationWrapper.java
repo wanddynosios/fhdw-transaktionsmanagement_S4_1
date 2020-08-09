@@ -9,7 +9,7 @@ public class SimulationWrapper implements Runnable {
 		this.simulation = sim;
 		this.result = result;
 	}
-	
+
 	@Override
 	public void run() {
 		Thread t = Thread.currentThread();
@@ -19,12 +19,13 @@ public class SimulationWrapper implements Runnable {
 		SimulationResult.registerResult(this.result);
 		DESScheduler.getScheduler().execute(this.simulation);
 	}
-	
+
 	public Simulation getSimulation() {
 		return simulation;
 	}
-	
+
 	public SimulationResult getResult() {
 		return result;
 	}
+
 }

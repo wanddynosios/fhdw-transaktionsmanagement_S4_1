@@ -1,4 +1,4 @@
-package trafficLightModel;
+package trafficLight.model;
 
 public interface TrafficController {
     long VehiclePassTime = 2000;        //ms

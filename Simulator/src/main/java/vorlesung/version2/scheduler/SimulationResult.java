@@ -2,20 +2,12 @@ package vorlesung.version2.scheduler;
 
 import vorlesung.version2.evaluation.SimulationEvaluator;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class SimulationResult {
-	private Simulation simulation;
-	private HashMap<Class<?>, HashMap<Object, SimulationEvaluator>> resultMap;
 
-	public SimulationResult(Simulation sim) {
-		this.simulation = sim;
-		this.resultMap = new HashMap<Class<?>, HashMap<Object, SimulationEvaluator>>();
-	}
 
 	private static void setResult(SimulationResult result) {
 		((SimulatorThread)Thread.currentThread()).setResult(result);
@@ -23,6 +15,25 @@ public class SimulationResult {
 
 	public static SimulationResult getResult() {
 		return ((SimulatorThread)Thread.currentThread()).getResult();
+	}
+
+	private Simulation simulation;
+	private HashMap<Class<?>, HashMap<Object, List<SimulationEvaluator>>> resultMap;
+	private Properties properties;
+
+
+	public SimulationResult(Simulation sim) {
+		this.simulation = sim;
+		this.resultMap = new HashMap<Class<?>, HashMap<Object, List<SimulationEvaluator>>>();
+		this.properties = new Properties();
+	}
+
+	public static void setProperty(String key, String value) {
+		Thread t = Thread.currentThread();
+		if(! (t instanceof SimulatorThread)) {
+			throw new SimulationException("Simulation thread type invalid");
+		}
+		SimulationResult.getResult().addStaticProperty(key, value);
 	}
 
 	public static void registerResult(SimulationResult result) {
@@ -33,41 +44,52 @@ public class SimulationResult {
 		SimulationResult.setResult(result);
 	}
 
-	public void register(SimulationEvaluator simulationEvaluator, Object sut) {
+	public void register(SimulationEvaluator simulationEvaluator, Object sut, String name) {
 		Class<? extends Object> sutClass = sut.getClass();
-		HashMap<Object, SimulationEvaluator> classMap = this.resultMap.computeIfAbsent(sutClass, k -> new HashMap<Object, SimulationEvaluator>());
-		classMap.put(sut, simulationEvaluator);
+		HashMap<Object, List<SimulationEvaluator>> classMap = this.resultMap.get(sutClass);
+		if (classMap == null) {
+			classMap = new HashMap<Object, List<SimulationEvaluator>>();
+			this.resultMap.put(sutClass, classMap);
+		}
+		List<SimulationEvaluator> objectList = classMap.get(sut);
+		if( objectList == null) {
+			objectList = new LinkedList<SimulationEvaluator>();
+			classMap.put(sut, objectList);
+		}
+		objectList.add(simulationEvaluator);
 	}
-	
+
 	public void printResults() {
 		List<Class<?>> classList = this.resultMap.keySet().stream().sorted(Comparator.comparing(Class::toString)).collect(Collectors.toList());
 		for (Class<?> c : classList) {
 			this.printResults(c);
 		}
 	}
-		
+
 	private void printResults(Class<?> c) {
 		List<Object> objectList =  this.resultMap.get(c).keySet().stream().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
 		for (Object o : objectList) {
 			printResults(c, o);
 		}
 	}
-	
+
 	private void printResults(Class<?> c, Object o) {
-		SimulationEvaluator e = this.resultMap.get(c).get(o);
-		System.out.println(c.toString() + ": " + o.toString() + ": " + e.toString() + " = " + e.eval());
+		List<SimulationEvaluator> evaluatorList = this.resultMap.get(c).get(o);
+		for (SimulationEvaluator e : evaluatorList) {
+			System.out.println(c.toString() + ": " + o.toString() + ": " + e.toString() + " = " + e.eval());
+		}
 
 	}
-	
+
 	public Simulation getSimulation() {
 		return simulation;
 	}
 
-	@Override
-	public String toString() {
-		return "SimulationResult{" +
-				"simulation=" + simulation +
-				", resultMap=" + resultMap +
-				'}';
+	public void addStaticProperty(String key, String value) {
+		this.properties.setProperty(key, value);
+	}
+
+	public Properties getStaticProperties() {
+		return this.properties;
 	}
 }

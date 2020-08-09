@@ -1,9 +1,10 @@
-package trafficLightModel;
+package trafficLight.model;
 
 import vorlesung.version2.scheduler.DESScheduler;
 
 public class Car implements Vehicle {
-    private long arrivalTime ;
+
+    private long arrivalTime;
 
     @Override
     public Vehicle createNewVehicle() {

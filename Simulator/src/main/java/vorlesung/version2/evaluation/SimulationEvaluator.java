@@ -10,7 +10,7 @@ public abstract class SimulationEvaluator {
 
 	public SimulationEvaluator(String name, Object sut) {
 		this.name = name;
-		SimulationResult.getResult().register(this, sut);
+		SimulationResult.getResult().register(this, sut, name);
 	}
 
 	public abstract Properties eval();
