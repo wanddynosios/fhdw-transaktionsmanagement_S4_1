@@ -4,9 +4,11 @@ import model.IO_Callback;
 import model.IO_Device;
 import model.IO_Request;
 import model.basic.Range;
+import org.apache.commons.math3.distribution.AbstractRealDistribution;
 
 public abstract class IO_Device_Abstract implements IO_Device {
     Range<Long> range;
+    AbstractRealDistribution distribution;
 
     public IO_Device_Abstract(Range<Long> range){
         this.range = range;
