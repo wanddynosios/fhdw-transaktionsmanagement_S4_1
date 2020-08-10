@@ -7,8 +7,8 @@ import model.basic.Range;
 
 public class NCQ_HDD extends IO_Device_Abstract {
 
-    public NCQ_HDD(Range<Long> range){
-        super(range);
+    public NCQ_HDD(Range<Long> range, Long readSpeed, Long writeSpeed, Long reactionTime) {
+        super(range, readSpeed, writeSpeed, reactionTime);
     }
 
     @Override

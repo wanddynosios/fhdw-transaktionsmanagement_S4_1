@@ -5,9 +5,8 @@ import model.IO_Request;
 import model.basic.Range;
 
 public class SSD extends IO_Device_Abstract {
-
-    public SSD(Range<Long> range) {
-        super(range);
+    public SSD(Range<Long> range, Long readSpeed, Long writeSpeed, Long reactionTime) {
+        super(range, readSpeed, writeSpeed, reactionTime);
     }
 
     @Override

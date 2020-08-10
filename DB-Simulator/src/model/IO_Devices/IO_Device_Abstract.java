@@ -1,32 +1,22 @@
 package model.IO_Devices;
 
-import model.IO_Callback;
 import model.IO_Device;
-import model.IO_Request;
 import model.basic.Range;
-import org.apache.commons.math3.distribution.AbstractRealDistribution;
 
 public abstract class IO_Device_Abstract implements IO_Device {
     Range<Long> range;
-    AbstractRealDistribution distribution;
+    Long readSpeed, writeSpeed, reactionTime;
 
-    public IO_Device_Abstract(Range<Long> range){
+    public IO_Device_Abstract(Range<Long> range, Long readSpeed, Long writeSpeed, Long reactionTime){
         this.range = range;
+        this.readSpeed = readSpeed;
+        this.writeSpeed = writeSpeed;
+        this.reactionTime = reactionTime;
     }
 
 
     @Override
     public Range<Long> getRange() {
         return range;
-    }
-
-    @Override
-    public void read(IO_Request request, IO_Callback callback) {
-
-    }
-
-    @Override
-    public void write(IO_Request request, IO_Callback callback) {
-
     }
 }

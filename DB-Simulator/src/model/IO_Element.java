@@ -4,7 +4,6 @@ package model;
 import model.basic.Range;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public interface IO_Element {
@@ -12,6 +11,7 @@ public interface IO_Element {
 	Range<Long> getRange();
 	public void read(IO_Request request, IO_Callback callback);
 	public void write(IO_Request request, IO_Callback callback);
+
 	default Map<IO_Element, Range<Long>> requestBoundHelper(IO_Request request, IO_Element[] elements) {
 		long start = request.getResourceStart();
 		long length = request.getResourceLength();

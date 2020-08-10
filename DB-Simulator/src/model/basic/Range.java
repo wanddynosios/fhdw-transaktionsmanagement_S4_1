@@ -24,4 +24,8 @@ public class Range<T extends Comparable> {
     public boolean contains(T containee){
         return  ((containee.compareTo(minimum) >= 0) && (containee.compareTo(maximum) <= 0));
     }
+
+    public Long getSize(){
+        return (Long) maximum - (Long) minimum;
+    }
 }

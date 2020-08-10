@@ -17,9 +17,9 @@ public class RequestGenerator {
     private Random random = new Random();
 
 
-    public RequestGenerator(AbstractRealDistribution randomDistribution) {
+    public RequestGenerator(AbstractRealDistribution randomDistribution, IO_Controller controller) {
         this.randomDistribution = randomDistribution;
-        proxyController = new InitControllers().init();
+        proxyController = new InitControllers().init(controller);
     }
 
     @ProcessStepDelay(0)
